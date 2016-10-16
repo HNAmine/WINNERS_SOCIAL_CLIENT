@@ -1,0 +1,89 @@
+<div class="row">
+    <div class="col s2">
+
+    </div>
+    <div class="col s8">
+        <div class="row">
+            <form class="col s12" #heroForm="ngForm">
+
+                <div class="row">
+                    <div class="input-field col s12" style="text-align: center;">
+                        <h4>Create Your Own Winner a Count !</h4>
+                        {{model | json}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input placeholder="First name" type="text" class="validate" required
+                               [(ngModel)]="model.user.firstName" name="firstname" #firstname="ngModel" minlength="4"
+                               [ngClass]="{'valid': firstname.valid, 'invalid': !firstname.valid}">
+                        <label class="active">* First Name</label>
+                        <span [hidden]="firstname.valid" class="character-counter"
+                              style="float: left; font-size: 12px;color:#d32f2f">FirsName is required <i>(+8c) !</i></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input placeholder="Last name" id="last_name" type="text" class="validate" required
+                               [(ngModel)]="model.user.lastName" name="lastname" #lastname="ngModel" minlength="4"
+                               [ngClass]="{'valid': lastname.valid, 'invalid': !lastname.valid}">
+                        <label for="last_name" class="active">* Last Name</label>
+                        <span [hidden]="lastname.valid" class="character-counter"
+                              style="float: left; font-size: 12px;color:#d32f2f">LastName is required <i>(+8c) !</i></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input placeholder="Email" type="email" class="validate" required
+                               pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                               [(ngModel)]="model.email" name="email" #email="ngModel"
+                               [ngClass]="{'valid': email.valid, 'invalid': !email.valid}">
+                        <label class="active">* Email</label>
+                        <span [hidden]="email.valid" class="character-counter"
+                              style="float: left; font-size: 12px;color:#d32f2f"><i>(exemple@exemple.exp)</i></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input placeholder="Login" id="login" type="text" class="validate" required
+                               [(ngModel)]="model.login" name="login" #login="ngModel" minlength="8"
+                               [ngClass]="{'valid': login.valid, 'invalid': !login.valid}">
+                        <label for="login" class="active">* Login</label>
+                        <span [hidden]="login.valid" class="character-counter"
+                              style="float: left; font-size: 12px;color:#d32f2f">Login is required <i>(+8c) !</i></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input placeholder="Password" type="password"
+                               class="validate" required [(ngModel)]="model.password" name="password"
+                               #password="ngModel" minlength="8"
+                               [ngClass]="{'valid': password.valid, 'invalid': !password.valid}">
+                        <label class="active">* Password</label>
+                        <span [hidden]="password.valid" class="character-counter"
+                              style="float: left; font-size: 12px;color:#d32f2f">Password is required <i>(+8c) !</i>)</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input placeholder="Password" type="password" class="validate" required
+                               [(ngModel)]="model.confirmation_password" name="confirmation_password"
+                               #confirmation_password="ngModel" minlength="8"
+                               [ngClass]="{'valid': (model.confirmation_password === model.password) && confirmation_password.valid, 'invalid': !confirmation_password.valid || (model.confirmation_password !== model.password)}">
+                        <label class="active">Confirmation password</label>
+                        <span [hidden]="(model.confirmation_password === model.password) && confirmation_password.valid"
+                              class="character-counter"
+                              style="float: left; font-size: 12px;color:#d32f2f">Password must equals to Confirmation <i>(+8c) !</i>)</span>
+                    </div>
+                </div>
+                <div class="row" style="text-align: center;">
+                    <button [disabled]="!heroForm.form.valid || !(model.confirmation_password === model.password)" class="btn waves-effect waves-light" (click)="onSubmit()">
+                        Submit
+                    </button>
+                    <button class="btn waves-effect waves-light #ff5252 red accent-2" (click)="init()">Reset
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
